@@ -252,12 +252,12 @@
       position: absolute;
       bottom: 0;
       display: block;
-      width: 100%;
+      width: 0;
       height: 2px;
       background-color: $c-light;
       left: 0;
-      transition-property: transform, background-color;
-      transition-duration: 0.3s;
+      transition: transform 0.3s linear,  background-color 0.3s, width 0.3s 0.5s;
+
       transform: scaleX(0);
       transform-origin: right;
       @media (max-width: $tablet) and (orientation: portrait) {
@@ -285,6 +285,8 @@
       outline: none;
       transition: color 0.3s;
       &::after {
+        transition-delay: 0s;
+        width: 100%;
         transform: scaleX(1);
         opacity: 1;
         background-color: $c-purple;
@@ -319,5 +321,14 @@ body.onload {
   }
   .page-header__nav {
     opacity: 1;
+  }
+  .page-header__menu {
+    a {
+      &.active {
+        &::after {
+          width: 100%;
+        }
+      }
+    }
   }
 }
