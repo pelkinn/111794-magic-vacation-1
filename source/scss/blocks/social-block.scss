@@ -21,7 +21,7 @@
   height: 4rem;
   color: $c-dark;
   border-radius: 50%;
-  transition: 0.3s;
+  transition: color 0.3s;
   @media (max-width: $tablet) and (orientation: portrait) {
     display: none;
   }
@@ -39,7 +39,8 @@
     background-color: $c-light;
     border: 2px solid $c-light;
     z-index: -1;
-    transition: 0.3s;
+    transition-duration: 0.3s;
+    transition-property: width, height;
   }
 
   svg {
