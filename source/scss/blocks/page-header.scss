@@ -254,7 +254,7 @@
       transition-property: transform, background-color;
       transition-duration: 0.3s;
       transform: scaleX(0);
-      transform-origin: left;
+      transform-origin: right;
       @media (max-width: $tablet) and (orientation: portrait) {
         left: 0;
         right: 0;
@@ -283,6 +283,7 @@
         transform: scaleX(1);
         opacity: 1;
         background-color: $c-purple;
+        transform-origin: left;
       }
     }
   }
