@@ -35,7 +35,11 @@
   padding: 1rem 0;
   width: 10rem;
   color: $c-light;
-
+  transition-duration: $transition-duration-onload;
+  transition-property: transform, opacity;
+  transition-timing-function: $cubic-bezier-onload;
+  transform: translateX(-30px);
+  opacity: 0;
   @media (min-width: $stop-scaling) {
     top: -5px;
     padding: 10px 0;
@@ -130,7 +134,9 @@
 .page-header__nav {
   display: flex;
   align-items: center;
-
+  transition: $transition-duration-onload opacity $cubic-bezier-onload;
+  transition-delay: 0.2s;
+  opacity: 0;
   @media (max-width: $tablet) and (orientation: portrait) {
     position: fixed;
     top: 0;
@@ -177,7 +183,6 @@
   font-size: 1.2rem;
   line-height: 1.0418;
   color: $c-light;
-
   @media (min-width: $stop-scaling) {
     font-size: 12px;
   }
@@ -247,12 +252,12 @@
       position: absolute;
       bottom: 0;
       display: block;
-      width: 100%;
+      width: 0;
       height: 2px;
       background-color: $c-light;
       left: 0;
-      transition-property: transform, background-color;
-      transition-duration: 0.3s;
+      transition: transform 0.3s linear,  background-color 0.3s, width 0.3s 0.5s;
+
       transform: scaleX(0);
       transform-origin: right;
       @media (max-width: $tablet) and (orientation: portrait) {
@@ -280,6 +285,8 @@
       outline: none;
       transition: color 0.3s;
       &::after {
+        transition-delay: 0s;
+        width: 100%;
         transform: scaleX(1);
         opacity: 1;
         background-color: $c-purple;
@@ -304,5 +311,24 @@
   @media (max-width: $mobile) and (orientation: landscape) {
     margin-left: 0;
     width: 100%;
+  }
+}
+
+body.onload {
+  .page-header__logo {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  .page-header__nav {
+    opacity: 1;
+  }
+  .page-header__menu {
+    a {
+      &.active {
+        &::after {
+          width: 100%;
+        }
+      }
+    }
   }
 }

@@ -39,8 +39,9 @@
     background-color: $c-light;
     border: 2px solid $c-light;
     z-index: -1;
-    transition-duration: 0.3s;
-    transition-property: width, height;
+    transition:  width 0.3s ease 0s, height 0.3s ease 0s, transform 0.3s cubic-bezier(.09,.14,.15,1.4) 0.3s;
+    transform: translate(-50%, -50%) scale(0);
+    transform-origin: center;
   }
 
   svg {
@@ -257,6 +258,14 @@
         width: 10px;
         height: 10px;
       }
+    }
+  }
+}
+
+body.onload {
+  .social-block__toggler {
+    &::before {
+      transform: translate(-50%, -50%) scale(1);
     }
   }
 }

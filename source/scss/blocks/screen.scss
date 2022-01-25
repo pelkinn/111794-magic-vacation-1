@@ -46,7 +46,8 @@
   color: $c-dark;
   background-color: $c-light;
   z-index: 1;
-
+  transition: $transition-duration-onload transform $cubic-bezier-onload;
+  transform: translateY(100%);
   @media (max-width: $tablet) and (orientation: portrait) {
     width: 3.5rem;
     height: 3.5rem;
@@ -353,4 +354,10 @@
 
 .screen--rules {
   background-color: $c-dark;
+}
+
+body.onload {
+  .screen__footer {
+    transform: translateY(0);
+  }
 }
