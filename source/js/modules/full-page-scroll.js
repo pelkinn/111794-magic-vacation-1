@@ -8,10 +8,13 @@ export default class FullPageScroll {
 
     this.screenElements = document.querySelectorAll(`.screen:not(.screen--result)`);
     this.menuElements = document.querySelectorAll(`.page-header__menu .js-menu-link`);
+    this.backgroundScreen = document.querySelector(`.background-screen`);
 
     this.activeScreen = 0;
     this.onScrollHandler = this.onScroll.bind(this);
     this.onUrlHashChengedHandler = this.onUrlHashChanged.bind(this);
+
+    this.indexPagePrizes = Array.from(this.screenElements).findIndex((el) => el.id === `prizes`);
   }
 
   init() {
@@ -52,6 +55,25 @@ export default class FullPageScroll {
   }
 
   changeVisibilityDisplay() {
+    if (this.activeScreen === this.indexPagePrizes) {
+      this.backgroundScreen.classList.remove(`background-screen--hidden`);
+      this.backgroundScreen.classList.add(`background-screen--active`);
+      setTimeout(() => {
+        this.screenElements[this.activeScreen - 1].classList.add(`screen--hidden`);
+        this.screenElements[this.activeScreen - 1].classList.remove(`active`);
+
+        this.screenElements[this.activeScreen].classList.remove(`screen--hidden`);
+        this.screenElements[this.activeScreen].classList.add(`active`);
+
+        this.backgroundScreen.classList.remove(`background-screen--active`);
+        this.backgroundScreen.classList.add(`background-screen--hidden`);
+        setTimeout(() => {
+          this.backgroundScreen.classList.remove(`background-screen--hidden`);
+        }, 300);
+      }, 600);
+
+      return;
+    }
     this.screenElements.forEach((screen) => {
       screen.classList.add(`screen--hidden`);
       screen.classList.remove(`active`);
