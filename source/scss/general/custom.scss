@@ -24,3 +24,22 @@
     opacity: 0;
   }
 }
+
+.animation-word {
+  .text__word {
+    display: inline-block;
+    overflow: hidden;
+
+  }
+  .text__word > span {
+    transform: translate3d(0, 1em, 0);
+    display: inline-block;
+    padding-top: 2rem;
+  }
+}
+
+.screen.active {
+  .animation-word.active .text__word > span {
+    transform: translateY(0);
+  }
+}

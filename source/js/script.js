@@ -8,6 +8,9 @@ import result from './modules/result.js';
 import form from './modules/form.js';
 import social from './modules/social.js';
 import FullPageScroll from './modules/full-page-scroll';
+import AccentTypographyBuild from './modules/accent-typography-build';
+import {ANIMATION_WORDS} from './const';
+
 
 // init modules
 mobileHeight();
@@ -24,4 +27,9 @@ fullPageScroll.init();
 
 window.onload = () => {
   document.body.classList.add(`onload`);
+
+  ANIMATION_WORDS.forEach((item) => {
+    const animationTopScreenTextLine = new AccentTypographyBuild(item.class, 500, item.delay, `active`, `transform`);
+    animationTopScreenTextLine.runAnimation();
+  });
 };

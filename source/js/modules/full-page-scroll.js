@@ -59,11 +59,12 @@ export default class FullPageScroll {
       this.backgroundScreen.classList.remove(`background-screen--hidden`);
       this.backgroundScreen.classList.add(`background-screen--active`);
       setTimeout(() => {
-        this.screenElements[this.activeScreen - 1].classList.add(`screen--hidden`);
-        this.screenElements[this.activeScreen - 1].classList.remove(`active`);
+        this.hideAllScreens();
 
         this.screenElements[this.activeScreen].classList.remove(`screen--hidden`);
-        this.screenElements[this.activeScreen].classList.add(`active`);
+        setTimeout(() => {
+          this.screenElements[this.activeScreen].classList.add(`active`);
+        }, 100);
 
         this.backgroundScreen.classList.remove(`background-screen--active`);
         this.backgroundScreen.classList.add(`background-screen--hidden`);
@@ -74,10 +75,7 @@ export default class FullPageScroll {
 
       return;
     }
-    this.screenElements.forEach((screen) => {
-      screen.classList.add(`screen--hidden`);
-      screen.classList.remove(`active`);
-    });
+    this.hideAllScreens();
     this.screenElements[this.activeScreen].classList.remove(`screen--hidden`);
     setTimeout(() => {
       this.screenElements[this.activeScreen].classList.add(`active`);
@@ -110,5 +108,12 @@ export default class FullPageScroll {
     } else {
       this.activeScreen = Math.max(0, --this.activeScreen);
     }
+  }
+
+  hideAllScreens() {
+    this.screenElements.forEach((screen) => {
+      screen.classList.add(`screen--hidden`);
+      screen.classList.remove(`active`);
+    });
   }
 }
